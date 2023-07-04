@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ImageBackground, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 
 export const RegistrationScreen = () => {
