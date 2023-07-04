@@ -10,6 +10,7 @@ export const RegistrationScreen = () => {
                 <View style={styles.form}>
                     <View>
                         <Image style={styles.avatar} />
+                        <View style={styles.iconAdd}></View>
                     </View>
                     <Text style={styles.title}>Реєстрація</Text>
                     <TextInput
@@ -24,6 +25,9 @@ export const RegistrationScreen = () => {
                         style={styles.input}
                         password
                         placeholder="Пароль" />
+                        <Pressable>
+                            <Text style={styles.inputLink}>Показати</Text>
+                        </Pressable>
                     <Pressable style={styles.button}>
                         <Text style={styles.buttonText}>Зареєстуватися</Text>
                     </Pressable>
@@ -76,10 +80,25 @@ const styles = StyleSheet.create({
         borderRadius: 16,
     },
 
+    iconAdd: {
+        position: 'absolute',
+        top: 18,
+        right: 48,
+        transform: [{ translateX: -60 }],
+        width: 24,
+        height: 24,
+        borderRadius: 24,
+        borderColor: "#FF6C00",
+        borderWidth: 1,
+    },
+
     title: {
         marginTop: 92,
         marginBottom: 33,
         textAlign: 'center',
+        fontSize: 30,
+        lineHeight: 35,
+        fontWeight: 500,
     },
 
     input: {
@@ -92,12 +111,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
 
+    inputLink: {
+        position: 'absolute',
+        top: -51,
+        right: 16,
+        color: '#1B4371',
+    },
+
     button: {
         marginTop: 43,
         display: 'flex',
         width: '100%',
         padding: 16,
         alignItems: 'center',
+        fontSize: 16,
         backgroundColor: '#FF6C00',
         borderRadius: 100,
     },
