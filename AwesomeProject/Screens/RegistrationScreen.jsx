@@ -1,4 +1,5 @@
 import React from 'react';
+import { AntDesign } from '@expo/vector-icons';
 import { Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 
@@ -10,7 +11,11 @@ export const RegistrationScreen = () => {
                 <View style={styles.form}>
                     <View>
                         <Image style={styles.avatar} />
-                        <View style={styles.iconAdd}></View>
+                        <AntDesign 
+                            style={styles.iconAdd} 
+                            name="pluscircleo" 
+                            size={24} 
+                            color="#FF6C00" />
                     </View>
                     <Text style={styles.title}>Реєстрація</Text>
                     <TextInput
@@ -83,13 +88,11 @@ const styles = StyleSheet.create({
     iconAdd: {
         position: 'absolute',
         top: 18,
-        right: 48,
+        right: 54,
         transform: [{ translateX: -60 }],
         width: 24,
         height: 24,
         borderRadius: 24,
-        borderColor: "#FF6C00",
-        borderWidth: 1,
     },
 
     title: {

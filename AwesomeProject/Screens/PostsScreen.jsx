@@ -1,11 +1,13 @@
-import React from 'react'
-import { Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { AntDesign, Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 export const PostsScreen = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
             <Text style={styles.title}>Публікації</Text>
+            <MaterialIcons style={styles.iconLogout} name="logout" size={24} color="#BDBDBD" />
         </View>
         <View style={styles.container}>
             <View style={styles.user}>
@@ -19,9 +21,13 @@ export const PostsScreen = () => {
                 {/* posts */}
             </View>
             <View style={styles.toolBar}>
+                <Ionicons name="grid-outline" size={24} color="#212121CC" />
                 <Pressable style={styles.button}>
-                    <Text style={styles.buttonText}>+</Text>
+                    <Text style={styles.buttonText}>
+                        <AntDesign name="plus" size={20} color="white" />
+                    </Text>
                 </Pressable>
+                <Feather name="user" size={24} color="#212121CC" />
             </View>
         </View>
     </SafeAreaView>
@@ -49,6 +55,12 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         letterSpacing: -0.408,
         textAlign: 'center',
+    },
+
+    iconLogout: {
+        position: 'absolute',
+        right: 16,
+        bottom: 10,
     },
 
     container: {
@@ -94,8 +106,11 @@ const styles = StyleSheet.create({
 
     toolBar: {
         display: 'flex',
-        marginTop: 'auto',
+        gap: 39,
+        flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 'auto',
         minWidth: 375,
         width: '100%',
         paddingTop: 9,
@@ -113,9 +128,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#FF6C00',
         borderRadius: 100,
-    },
-
-    buttonText: {
-        color: '#FFFFFF',
     },
 })
