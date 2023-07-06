@@ -65,9 +65,10 @@ const styles = StyleSheet.create({
         marginTop: 32,
         marginBottom: 33,
         textAlign: 'center',
+        fontFamily: 'Roboto-500',
         fontSize: 30,
         lineHeight: 35,
-        fontWeight: 500,
+        letterSpacing: 0.3,
     },
 
     input: {
@@ -93,12 +94,13 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 16,
         alignItems: 'center',
-        fontSize: 16,
         backgroundColor: '#FF6C00',
         borderRadius: 100,
     },
 
     buttonText: {
+        fontFamily: 'Roboto-400',
+        fontSize: 16,
         color: '#FFFFFF',
     },
 
@@ -110,10 +112,14 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        fontFamily: 'Roboto-400',
+        fontSize: 16,
         color: '#1B4371',
     },
 
     textLink: {
+        fontFamily: 'Roboto-400',
+        fontSize: 16,
         color: '#1B4371',
         textDecorationLine: "underline",
         textDecorationStyle: "solid",

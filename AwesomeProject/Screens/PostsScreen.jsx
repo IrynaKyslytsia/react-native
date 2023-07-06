@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 export const PostsScreen = () => {
   return (
@@ -9,12 +9,19 @@ export const PostsScreen = () => {
         </View>
         <View style={styles.container}>
             <View style={styles.user}>
-                <Image style={styles.avatar} />
-                <Text style={styles.name}>Natali Romanova</Text>
-                <Text style={styles.email}>email@example.com</Text>
+                <Image source={require('../assets/images/Avatar.jpg')} style={styles.avatar} />
+                <View style={styles.userInfo}>
+                    <Text style={styles.name}>Natali Romanova</Text>
+                    <Text style={styles.email}>email@example.com</Text>
+                </View>
             </View>
             <View style={styles.posts}>
                 {/* posts */}
+            </View>
+            <View style={styles.toolBar}>
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>+</Text>
+                </Pressable>
             </View>
         </View>
     </SafeAreaView>
@@ -28,7 +35,8 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        width: 375,
+        minWidth: 375,
+        width: '100%',
         paddingTop: 55,
         paddingBottom: 11,
         borderBottomColor: '#BDBDBD',
@@ -37,8 +45,9 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 17,
-        fontWeight: 500,
+        fontFamily: 'Roboto-500',
         lineHeight: 22,
+        letterSpacing: -0.408,
         textAlign: 'center',
     },
 
@@ -51,23 +60,62 @@ const styles = StyleSheet.create({
 
     user: {
         marginTop: 32,
+        marginBottom: 32,
+        display: 'flex',
+        flexDirection: 'row',
+    },
+
+    userInfo: {
+        marginLeft: 8,
+        justifyContent: 'center',
     },
 
     avatar: {
-
+        width: 60,
+        height: 60,
+        backgroundColor: "#F6F6F6",
+        borderRadius: 16,
     },
 
     name: {
+        fontFamily: 'Roboto-700',
         fontSize: 13,
-        fontWeight: 700,
     },
 
     email: {
+        fontFamily: 'Roboto-400',
         fontSize: 11,
         color: 'rgba(33, 33, 33, 0.80)',
     },
 
     posts: {
         // posts styles
-    }
+    },
+
+    toolBar: {
+        display: 'flex',
+        marginTop: 'auto',
+        alignItems: 'center',
+        minWidth: 375,
+        width: '100%',
+        paddingTop: 9,
+        paddingBottom: 34,
+        borderTopColor: '#BDBDBD',
+        borderTopWidth: 1,
+    },
+
+    button: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 70,
+        height: 40,
+        alignItems: 'center',
+        backgroundColor: '#FF6C00',
+        borderRadius: 100,
+    },
+
+    buttonText: {
+        color: '#FFFFFF',
+    },
 })
