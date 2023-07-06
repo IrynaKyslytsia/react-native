@@ -10,7 +10,9 @@ export const RegistrationScreen = () => {
             <View style={styles.container}>
                 <View style={styles.form}>
                     <View>
-                        <Image style={styles.avatar} />
+                        <View style={styles.avatarWrap}>
+                            <Image style={styles.avatar} />
+                        </View>
                         <AntDesign 
                             style={styles.iconAdd} 
                             name="pluscircleo" 
@@ -74,11 +76,14 @@ const styles = StyleSheet.create({
         gap: 16,
     },
 
-    avatar: {
+    avatarWrap: {
         position: 'absolute',
         top: -60,
         left: '50%',
         transform: [{ translateX: -60 }],
+    },
+
+    avatar: {
         width: 120,
         height: 120,
         backgroundColor: '#F6F6F6',
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
     iconAdd: {
         position: 'absolute',
         top: 18,
-        right: 54,
+        right: 48,
         transform: [{ translateX: -60 }],
         width: 24,
         height: 24,
