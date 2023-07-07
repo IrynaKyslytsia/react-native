@@ -64,15 +64,13 @@ const styles = StyleSheet.create({
     },
 
     form: {
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingHorizontal: 16,
         justifyContent: "space-between",
         gap: 16,
     },
 
     title: {
-        marginTop: 32,
-        marginBottom: 33,
+        marginVertical: 33,
         textAlign: 'center',
         fontFamily: 'Roboto-500',
         fontSize: 30,
@@ -114,7 +112,6 @@ const styles = StyleSheet.create({
     },
 
     textWrap: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         gap: 3,

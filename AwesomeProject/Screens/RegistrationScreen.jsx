@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        display: 'flex',
         width: '100%',
         marginTop: 43,
         padding: 16,
@@ -152,7 +151,6 @@ const styles = StyleSheet.create({
     },
 
     textWrap: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         gap: 3,
