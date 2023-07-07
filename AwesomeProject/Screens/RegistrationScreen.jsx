@@ -1,15 +1,19 @@
 import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, ImageBackground, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 
 export const RegistrationScreen = () => {
+    
   return (
     
         <ImageBackground source={require('../assets/images/PhotoBG.jpg')} style={styles.bgImage}>
+            <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.keyboardAvoidingView}>
             <View style={styles.container}>
                 <View style={styles.form}>
-                    <View>
+                    <View style={{position: 'relative'}}>
                         <View style={styles.avatarWrap}>
                             <Image style={styles.avatar} />
                         </View>
@@ -46,6 +50,7 @@ export const RegistrationScreen = () => {
                     </View>
                 </View>
             </View>
+            </KeyboardAvoidingView>
         </ImageBackground>
     
   );
@@ -60,6 +65,11 @@ const styles = StyleSheet.create({
         height: '100%',
     },
 
+    keyboardAvoidingView: {
+        flex: 1,
+        marginTop: 'auto',
+    },
+
     container: {
         marginTop: 'auto',
         width: '100%',
@@ -70,8 +80,7 @@ const styles = StyleSheet.create({
     },
 
     form: {
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingHorizontal: 16,
         justifyContent: "space-between",
         gap: 16,
     },
@@ -93,11 +102,8 @@ const styles = StyleSheet.create({
     iconAdd: {
         position: 'absolute',
         top: 18,
-        right: 48,
-        transform: [{ translateX: -60 }],
-        width: 24,
-        height: 24,
-        borderRadius: 24,
+        right: '50%',
+        transform: [{ translateX: 72 }],
     },
 
     title: {
@@ -130,9 +136,9 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        marginTop: 43,
         display: 'flex',
         width: '100%',
+        marginTop: 43,
         padding: 16,
         alignItems: 'center',
         backgroundColor: '#FF6C00',
