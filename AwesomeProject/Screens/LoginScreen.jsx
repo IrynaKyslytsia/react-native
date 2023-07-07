@@ -1,11 +1,14 @@
 import React from 'react';
-import { Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, ImageBackground, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 
 export const LoginScreen = () => {
   return (
     
-        <ImageBackground source={require('../assets/images/PhotoBG.jpg')} style={styles.bgImage}>
+    <ImageBackground source={require('../assets/images/PhotoBG.jpg')} style={styles.bgImage}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.keyboardAvoidingView}>
             <View style={styles.container}>
                 <View style={styles.form}>
                     <Text style={styles.title}>Увійти</Text>
@@ -31,7 +34,8 @@ export const LoginScreen = () => {
                     </View>
                 </View>
             </View>
-        </ImageBackground>
+        </KeyboardAvoidingView>
+    </ImageBackground>
     
   );
 };
@@ -43,6 +47,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         height: '100%',
+    },
+
+    keyboardAvoidingView: {
+        flex: 1,
+        marginTop: 'auto',
     },
 
     container: {

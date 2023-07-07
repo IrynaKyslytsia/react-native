@@ -7,8 +7,8 @@ export const RegistrationScreen = () => {
     
   return (
     
-        <ImageBackground source={require('../assets/images/PhotoBG.jpg')} style={styles.bgImage}>
-            <KeyboardAvoidingView
+    <ImageBackground source={require('../assets/images/PhotoBG.jpg')} style={styles.bgImage}>
+        <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.keyboardAvoidingView}>
             <View style={styles.container}>
@@ -50,8 +50,8 @@ export const RegistrationScreen = () => {
                     </View>
                 </View>
             </View>
-            </KeyboardAvoidingView>
-        </ImageBackground>
+        </KeyboardAvoidingView>
+    </ImageBackground>
     
   );
 };
