@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        minWidth: 375,
-        width: '100%',
+        // minWidth: 375,
+        // width: '100%',
         paddingTop: 55,
         paddingBottom: 11,
         borderBottomColor: '#BDBDBD',
@@ -66,14 +66,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingHorizontal: 16,
     },
 
     user: {
-        marginTop: 32,
-        marginBottom: 32,
-        display: 'flex',
+        marginVertical: 32,
         flexDirection: 'row',
     },
 
@@ -105,7 +102,6 @@ const styles = StyleSheet.create({
     },
 
     toolBar: {
-        display: 'flex',
         gap: 39,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -120,7 +116,6 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         width: 70,
