@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Avatar } from './Avatar';
 
 export const RegistrationForm = () => {
+    const [login, setLogin] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleForm = () => {
+        console.log(login);
+        console.log(email);
+        console.log(password);
+
+        reset();
+    };
+
+    const reset = () => {
+        setLogin('');
+        setEmail('');
+        setPassword('');
+    }
+
   return (
     <View style={styles.form}>
         <Avatar />
@@ -10,19 +28,27 @@ export const RegistrationForm = () => {
         <TextInput
             style={styles.input}
             username
-            placeholder="Логін" />
+            placeholder="Логін"
+            value={login}
+            onChangeText={setLogin} />
         <TextInput
             style={styles.input}
             email
-            placeholder="Адреса електронної пошти" />
+            placeholder="Адреса електронної пошти"
+            value={email}
+            onChangeText={setEmail} />
         <TextInput
             style={styles.input}
             password
-            placeholder="Пароль" />
+            placeholder="Пароль"
+            value={password}
+            onChangeText={setPassword} />
         <Pressable>
             <Text style={styles.inputLink}>Показати</Text>
         </Pressable>
-        <Pressable style={styles.button}>
+        <Pressable 
+            style={styles.button}
+            onPress={handleForm}>
             <Text style={styles.buttonText}>Зареєстуватися</Text>
         </Pressable>
         <View style={styles.textWrap}>
