@@ -19,7 +19,7 @@ export const RegistrationForm = () => {
         setLogin('');
         setEmail('');
         setPassword('');
-    }
+    };
 
   return (
     <View style={styles.form}>
