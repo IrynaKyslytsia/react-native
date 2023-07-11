@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { ImageBackground, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { RegistrationForm } from '../Components/RegistrationForm';
+
 
 
 export const RegistrationScreen = () => {

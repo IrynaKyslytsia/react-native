@@ -2,8 +2,8 @@ import React from 'react';
 import { ImageBackground, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { LoginForm } from '../Components/LoginForm';
 
-
 export const LoginScreen = () => {
+
   return (
     
     <ImageBackground source={require('../assets/images/PhotoBG.jpg')} style={styles.bgImage}>

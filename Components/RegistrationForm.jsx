@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Avatar } from './Avatar';
+import { useNavigation } from '@react-navigation/native';
 
-export const RegistrationForm = () => {
+export const RegistrationForm = ({onPress}) => {
     const [login, setLogin] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigation = useNavigation();
 
     const handleForm = () => {
         console.log(login);
@@ -53,7 +56,7 @@ export const RegistrationForm = () => {
         </Pressable>
         <View style={styles.textWrap}>
             <Text style={styles.text}>Вже є акаунт?</Text>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate("Login")}>
                 <Text style={styles.text}>Увійти</Text>
             </Pressable>
         </View>

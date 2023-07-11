@@ -1,9 +1,12 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 
 export const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigation = useNavigation();
 
     const handleForm = () => {
         console.log(email);
@@ -42,7 +45,7 @@ export const LoginForm = () => {
         </Pressable>
         <View style={styles.textWrap}>
             <Text style={styles.text}>Немає акаунту?</Text>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate("Registration")}>
                 <Text style={styles.textLink}>Зареєструватися</Text>
             </Pressable>
         </View>
