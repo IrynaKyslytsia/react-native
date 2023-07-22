@@ -33,11 +33,16 @@ export default function App() {
           name="Login" 
           component={LoginScreen}
           options={{ headerShown: false }} />
-        <MainStack.Screen name="Home" component={Home} />
+        <MainStack.Screen 
+        name="Home" 
+        component={Home}
+        options={{ 
+          headerShown: true,
+          }} />
       </MainStack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

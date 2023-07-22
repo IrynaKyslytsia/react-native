@@ -16,6 +16,7 @@ export const RegistrationForm = ({onPress}) => {
         console.log(password);
 
         reset();
+        navigation.navigate("Home");
     };
 
     const reset = () => {

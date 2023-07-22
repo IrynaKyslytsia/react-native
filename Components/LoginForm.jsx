@@ -13,6 +13,7 @@ export const LoginForm = () => {
         console.log(password);
 
         reset();
+        navigation.navigate("Home");
     };
 
     const reset = () => {
