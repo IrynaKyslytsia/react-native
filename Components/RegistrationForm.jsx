@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 
     inputLink: {
         position: 'absolute',
-        top: -51,
+        top: -55,
         right: 16,
         fontFamily: 'Roboto-400',
         fontSize: 16,

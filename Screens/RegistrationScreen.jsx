@@ -2,8 +2,6 @@ import React from 'react';
 import { ImageBackground, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { RegistrationForm } from '../Components/RegistrationForm';
 
-
-
 export const RegistrationScreen = () => {
     
   return (
@@ -45,4 +43,4 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 25,
         backgroundColor: '#FFFFFF',
     }
-})
+});

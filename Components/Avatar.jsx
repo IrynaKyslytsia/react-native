@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
         right: '50%',
         transform: [{ translateX: 72 }],
     },
-})
+});

@@ -37,7 +37,7 @@ export default function App() {
         name="Home" 
         component={Home}
         options={{ 
-          headerShown: true,
+          headerShown: false,
           }} />
       </MainStack.Navigator>
     </NavigationContainer>
