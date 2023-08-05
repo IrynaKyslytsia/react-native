@@ -61,6 +61,7 @@ export const Home = () => {
       component={CreatePostsScreen}
       options={{
         title: "Створити публікацію",
+        tabBarStyle: { display: "none" },
         headerLeft: () => (
           <Feather
             name="arrow-left"

@@ -33,18 +33,21 @@ export const RegistrationForm = ({onPress}) => {
             style={styles.input}
             username
             placeholder="Логін"
+            placeholderTextColor={'#BDBDBD'}
             value={login}
             onChangeText={setLogin} />
         <TextInput
             style={styles.input}
             email
             placeholder="Адреса електронної пошти"
+            placeholderTextColor={'#BDBDBD'}
             value={email}
             onChangeText={setEmail} />
         <TextInput
             style={styles.input}
             password
             placeholder="Пароль"
+            placeholderTextColor={'#BDBDBD'}
             value={password}
             onChangeText={setPassword} />
         <Pressable>
