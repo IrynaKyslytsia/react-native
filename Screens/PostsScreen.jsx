@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native';
 
 export const PostsScreen = () => {
   return (
@@ -12,9 +12,10 @@ export const PostsScreen = () => {
                     <Text style={styles.email}>email@example.com</Text>
                 </View>
             </View>
-            <View style={styles.posts}>
-                {/* posts */}
-            </View>
+            <FlatList
+                renderItem={({ item }) => <PostCard data={item}></PostCard>}
+                keyExtractor={(item) => item.id}
+          />
         </View>
     </SafeAreaView>
   )
@@ -58,9 +59,5 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto-400',
         fontSize: 11,
         color: 'rgba(33, 33, 33, 0.80)',
-    },
-
-    posts: {
-        // posts styles
-    },
+    }
 })
