@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { ImageBackground, Keyboard, TouchableOpacity } from "react-native";
 import { View, TouchableWithoutFeedback, KeyboardAvoidingView, StyleSheet, Text, Pressable, TextInput, Image } from "react-native";
 import { Camera } from "expo-camera";
@@ -6,6 +6,10 @@ import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import * as MediaLibrary from "expo-media-library";
 import * as Location from "expo-location";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../redux/auth/selectors";
+import { createPost } from "../redux/posts/operations";
+import { Alert } from "react-native";
 
 export const CreatePostsScreen = () => {
 
@@ -13,17 +17,13 @@ export const CreatePostsScreen = () => {
   const [photo, setPhoto] = useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
-  const [title, setTitle] = useState("");
-  const [place, setPlace] = useState("");
+  const [title, setTitle] = useState(null);
+  const [place, setPlace] = useState(null);
   // const [location, setLocation] = useState(null);
 
   const navigation = useNavigation();
-
-  const takePhoto = async () => {
-    const photo = await camera.takePictureAsync()
-    setPhoto(photo.uri)
-    console.log(photo.uri)
-  };
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     (async () => {
@@ -57,7 +57,29 @@ export const CreatePostsScreen = () => {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude
     }
-    navigation.navigate("Posts");
+    dispatch(
+      createPost({
+        photo,
+        title,
+        comments: [],
+        likes: [],
+        coords,
+        place,
+        idUser: user.id,
+      })
+    ).then((res) => {
+      if (res.type === "posts/createPost/fulfilled") {
+        setPhoto(null);
+        setTitle(null);
+        setPlace(null);
+        navigation.navigate("Posts");
+      } else {
+        return Alert.alert(
+          "Помилка створення публікації",
+          `Опис помилки із сервера: ${res.payload}`
+        );
+      }
+    });
   };
 
   return (
@@ -78,11 +100,18 @@ export const CreatePostsScreen = () => {
                             source={{uri: photo}} 
                             style={{width: 343, height: 240}}/>
                         </View>)}
-                        <TouchableOpacity style={styles.cameraButton} onPress={takePhoto}>
+                        <TouchableOpacity style={styles.cameraButton}>
                           <MaterialCommunityIcons
                             name="camera"
                             size={24}
-                            color={'#BDBDBD'} />
+                            color={'#BDBDBD'}
+                            onPress={async () => {
+                              if (camera) {
+                                const { uri } = await camera.takePictureAsync();
+                                await MediaLibrary.createAssetAsync(uri);
+                                setPhoto(uri);
+                              }
+                            }} />
                         </TouchableOpacity>
                     </Camera>
                       ) : (
@@ -143,8 +172,8 @@ export const CreatePostsScreen = () => {
                     color={'#BDBDBD'}
                     onPress={() => {
                       setPhoto(null);
-                      setTitle("");
-                      setPlace("");
+                      setTitle(null);
+                      setPlace(null);
                     }} />
                 </View>
             </KeyboardAvoidingView>

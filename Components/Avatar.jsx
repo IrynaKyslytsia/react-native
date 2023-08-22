@@ -6,7 +6,7 @@ export const Avatar = () => {
   return (
     <View>
         <View style={styles.avatarWrap}>
-            <Image style={styles.avatar} />
+            <Image style={styles.avatar} source={require('../assets/images/Avatar.jpg')} />
         </View>
         <AntDesign 
             style={styles.iconAdd} 

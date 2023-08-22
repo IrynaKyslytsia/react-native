@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPosts } from '../redux/posts/selectors';
+import { selectUser } from '../redux/auth/selectors';
+import { fetchPosts } from '../redux/posts/operations';
+import { PostCard } from '../Components/PostCard';
 
 export const PostsScreen = () => {
+
+    const dispatch = useDispatch();
+  const posts = useSelector(selectPosts);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
+  const user = useSelector(selectUser);
+  console.log(user)
+
   return (
     <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
             <View style={styles.user}>
                 <Image source={require('../assets/images/Avatar.jpg')} style={styles.avatar} />
                 <View style={styles.userInfo}>
-                    <Text style={styles.name}>Natali Romanova</Text>
-                    <Text style={styles.email}>email@example.com</Text>
+                    <Text style={styles.name}>{user.login}</Text>
+                    <Text style={styles.email}>{user.email}</Text>
                 </View>
             </View>
             <FlatList
+                data={posts}
                 renderItem={({ item }) => <PostCard data={item}></PostCard>}
                 keyExtractor={(item) => item.id}
           />

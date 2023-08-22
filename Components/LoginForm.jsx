@@ -1,19 +1,36 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { useDispatch } from 'react-redux';
+import { logIn } from '../redux/auth/operations';
 
 export const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     const handleForm = () => {
-        console.log(email);
-        console.log(password);
-
-        reset();
-        navigation.navigate("Home");
+        if (email === "" || password === "") {
+            return Alert.alert(
+              "Не коректні дані",
+              "Будь ласка, заповніть всі поля!"
+            );
+          } else {
+            dispatch(logIn({ email, password }))
+            .then((res) => {
+              if (res.type === "auth/login/fulfilled") {
+                reset();
+                navigation.navigate("Home");
+              } else {
+                return Alert.alert(
+                  "Помилка входу",
+                  `${res.payload}`
+                );
+              }
+            });
+          }
     };
 
     const reset = () => {

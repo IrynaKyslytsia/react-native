@@ -3,10 +3,15 @@ import { StyleSheet } from "react-native";
 import { Image, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
-import { commonStyles } from "./commonStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../redux/auth/selectors";
 
-export const PostCard = () => {
+export const PostCard = ({
+  data: { id, photo, title, place, coords, likes, comments, idUser },
+}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   return (
     <View style={styles.container}>
@@ -20,11 +25,11 @@ export const PostCard = () => {
           color={'#FF6C00'}
           style={{ marginRight: 6 }}
           onPress={() => {
-            navigation.navigate("Comments");
+            navigation.navigate("Comments", { idPost: id, photo });
           }}
         />
         <Text style={[styles.text, { marginRight: 24 }]}>
-          {comments.length}
+          0
         </Text>
 
         <View style={{ flexDirection: "row", alignItems: "baseline" }}>
@@ -34,7 +39,7 @@ export const PostCard = () => {
             color={'#FF6C00'}
             style={{ marginRight: 6 }}
           />
-          <Text>{likes.length}</Text>
+          <Text>0</Text>
         </View>
 
         <Feather
@@ -43,7 +48,7 @@ export const PostCard = () => {
           color={'#BDBDBD'}
           style={{ marginLeft: "auto", marginRight: 4 }}
           onPress={() => {
-            navigation.navigate("Map");
+            navigation.navigate("Map", { title, place, coords });
           }}
         />
         <Text

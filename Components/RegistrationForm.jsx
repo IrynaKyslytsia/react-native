@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Avatar } from './Avatar';
 import { useNavigation } from '@react-navigation/native';
+import { register } from "../redux/auth/operations";
+import { Alert } from 'react-native';
 
 export const RegistrationForm = ({onPress}) => {
     const [login, setLogin] = useState("");
@@ -10,14 +13,30 @@ export const RegistrationForm = ({onPress}) => {
 
     const navigation = useNavigation();
 
-    const handleForm = () => {
-        console.log(login);
-        console.log(email);
-        console.log(password);
+    const dispatch = useDispatch();
 
-        reset();
-        navigation.navigate("Home");
-    };
+    const handleForm = () => {
+        if (email === "" || password === "") {
+            return Alert.alert(
+              "Не коректні дані",
+              "Будь ласка, заповніть всі поля!"
+            );
+          } else {
+            dispatch(
+              register({ login, email, password })
+            ).then((res) => {
+              if (res.type === "auth/register/fulfilled") {
+                reset();
+                navigation.navigate("Home");
+              } else {
+                return Alert.alert(
+                  "Помилка реєстрації",
+                  `${res.payload}`
+                );
+              }
+            });
+          }
+        };
 
     const reset = () => {
         setLogin('');

@@ -5,6 +5,9 @@ import {CreatePostsScreen} from './CreatePostsScreen';
 import {PostsScreen} from './PostsScreen';
 import {ProfileScreen} from './ProfileScreen';
 import { useNavigation } from '@react-navigation/native';
+import { signOut } from "firebase/auth";
+import { logOut } from "../redux/auth/operations";
+import { auth } from "../config";
 
 const Tabs = createBottomTabNavigator();
 
@@ -53,6 +56,15 @@ export const Home = () => {
             size={24}
             color="#BDBDBD"
             style={{ marginRight: 16, padding: 5 }}
+            onPress={async () => {
+              try {
+                await signOut(auth);
+                logOut();
+                navigation.navigate("Login");
+              } catch (error) {
+                console.log(error);
+              }
+            }}
           />
         ),
       }} />

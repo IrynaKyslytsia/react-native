@@ -2,14 +2,20 @@ import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
 import { RegistrationScreen } from './Screens/RegistrationScreen';
 import { LoginScreen } from './Screens/LoginScreen';
-import { PostsScreen } from './Screens/PostsScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from './Screens/Home';
-
-
-const MainStack = createStackNavigator();
+import { Provider } from "react-redux";
+import { persistor, store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { auth } from "./config";
+import { Octicons } from '@expo/vector-icons';
+import {PostCard} from "./Components/PostCard";
+import {MapScreen} from "./Screens/MapScreen";
+import {CommentsScreen} from "./Screens/CommentsScreen";
+import { useEffect, useState } from 'react';
+// import { persistor, store } from "./redux/store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,29 +24,73 @@ export default function App() {
     "Roboto-700": require("./assets/fonts/Roboto-Bold.ttf"),
   });
 
+  const [initialRoute, setInitialRoute] = useState(null);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setInitialRoute(user ? "Home" : "Login");
+    });
+  }, []);
+
   if (!fontsLoaded) {
     return null;
   };
 
+  const MainStack = createStackNavigator();
+
   return (
-    <NavigationContainer style={styles.container}>
-      <MainStack.Navigator initialRouteName="Login">
-        <MainStack.Screen 
-          name="Registration" 
-          component={RegistrationScreen}
-          options={{ headerShown: false }} />
-        <MainStack.Screen 
-          name="Login" 
-          component={LoginScreen}
-          options={{ headerShown: false }} />
-        <MainStack.Screen 
-        name="Home" 
-        component={Home}
-        options={{ 
-          headerShown: false,
-          }} />
-      </MainStack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <NavigationContainer style={styles.container}>
+          <MainStack.Navigator initialRouteName={initialRoute}>
+            <MainStack.Screen 
+              name="Registration" 
+              component={RegistrationScreen}
+              options={{ headerShown: false }} />
+            <MainStack.Screen 
+              name="Login" 
+              component={LoginScreen}
+              options={{ headerShown: false }} />
+            <MainStack.Screen 
+              name="Home" 
+              component={Home}
+              options={{ 
+              headerShown: false,
+              }} />
+            <MainStack.Screen
+                name="PostCard"
+                component={PostCard}
+                options={{ headerShown: false }}
+              />
+              <MainStack.Screen
+                name="Map"
+                component={MapScreen}
+                options={{ headerShown: false }}
+              />
+              <MainStack.Screen
+                name="Comments"
+                component={CommentsScreen}
+                options={({ navigation }) => ({
+                  title: "Коментарі",
+                  headerTitleAlign: "center",
+                  headerLeft: () => (
+                    <Octicons
+                      name="arrow-left"
+                      size={24}
+                      color={"#212121"}
+                      style={{
+                        marginLeft: 16,
+                        padding: 5,
+                      }}
+                      onPress={() => navigation.navigate("Posts")}
+                    />
+                  ),
+                })}
+              />
+          </MainStack.Navigator>
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   );
 };
 
