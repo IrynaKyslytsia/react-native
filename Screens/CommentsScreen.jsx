@@ -6,11 +6,10 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  TextInput,
+  Alert
 } from "react-native";
-import { TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert } from "react-native";
-
 import { auth } from "../config";
 import { Ionicons } from "@expo/vector-icons";
 import {Comment} from "../Components/Comment";

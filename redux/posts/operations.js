@@ -37,7 +37,6 @@ export const createPost = createAsyncThunk(
       const { photo, ...rest } = post;
 
       //Отримання реального шляху для фото та запис у Redux
-
       const realPhotoURL = await getRealPhotoURL(photo);
       post = { photo: realPhotoURL, ...rest };
 

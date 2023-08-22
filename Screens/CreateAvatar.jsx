@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { KeyboardAvoidingView } from "react-native";
-import { TouchableWithoutFeedback } from "react-native";
-import { Keyboard } from "react-native";
-import { Platform } from "react-native";
-
-import backgroundPhoto from "../assets/images/background-photo.png";
-import HeroButton from "../components/HeroButton";
+import { ImageBackground, StyleSheet, Text, View, Keyboard, Platform, TouchableWithoutFeedback, KeyboardAvoidingView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import * as Location from "expo-location";
@@ -24,7 +16,6 @@ export const CreateAvatar = ({ navigation, route }) => {
 
   useEffect(() => {
     (async () => {
-      //get status Camera
       const { status } = await Camera.requestCameraPermissionsAsync();
       await MediaLibrary.requestPermissionsAsync();
 
@@ -40,10 +31,12 @@ export const CreateAvatar = ({ navigation, route }) => {
         backgroundColor: '#FF6C00',
         color: '#FFFFFF',
       }
-    : { backgroundColor: "#F6F6F6", color: commonStyles.vars.colorGray };
+    : { 
+      backgroundColor: "#F6F6F6", 
+      color: "#BDBDBD" 
+    };
 
   const handleSubmit = async () => {
-    //get status of location
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
       console.log("Permission to access location was denied");

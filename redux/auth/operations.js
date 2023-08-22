@@ -2,9 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { auth } from "../../config";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
   updateProfile,
 } from "firebase/auth";
 import { getRealPhotoURL } from "../utils/utils";
@@ -69,7 +67,6 @@ export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    // await signOut(auth);
     return {
       id: null,
       email: null,

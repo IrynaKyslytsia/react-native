@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Avatar } from './Avatar';
 import { useNavigation } from '@react-navigation/native';
+import { Pressable, StyleSheet, Text, TextInput, View, Alert } from 'react-native';
+import { Avatar } from './Avatar';
 import { register } from "../redux/auth/operations";
-import { Alert } from 'react-native';
 
 export const RegistrationForm = ({onPress}) => {
     const [login, setLogin] = useState("");

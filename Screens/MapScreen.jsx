@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  
   mapStyle: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,

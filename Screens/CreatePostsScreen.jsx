@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, Keyboard, TouchableOpacity } from "react-native";
-import { View, TouchableWithoutFeedback, KeyboardAvoidingView, StyleSheet, Text, Pressable, TextInput, Image } from "react-native";
+import { 
+  ImageBackground, 
+  Keyboard, 
+  TouchableOpacity, 
+  Alert, 
+  View, 
+  TouchableWithoutFeedback, 
+  KeyboardAvoidingView, 
+  StyleSheet, 
+  Text, 
+  Pressable, 
+  TextInput, 
+  Image } from "react-native";
 import { Camera } from "expo-camera";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -9,7 +20,6 @@ import * as Location from "expo-location";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/auth/selectors";
 import { createPost } from "../redux/posts/operations";
-import { Alert } from "react-native";
 
 export const CreatePostsScreen = () => {
 
@@ -19,7 +29,6 @@ export const CreatePostsScreen = () => {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [title, setTitle] = useState(null);
   const [place, setPlace] = useState(null);
-  // const [location, setLocation] = useState(null);
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
