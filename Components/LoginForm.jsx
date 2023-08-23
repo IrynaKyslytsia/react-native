@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react'
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useDispatch } from 'react-redux';
 import { logIn } from '../redux/auth/operations';
+import { auth } from '../config';
 
 export const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -10,6 +11,12 @@ export const LoginForm = () => {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            !user ? navigation.navigate("Login") : navigation.navigate("Home");
+        });
+      }, []);
 
     const handleForm = () => {
         if (email === "" || password === "") {
@@ -22,7 +29,7 @@ export const LoginForm = () => {
             .then((res) => {
               if (res.type === "auth/login/fulfilled") {
                 reset();
-                navigation.navigate("Home");
+                
               } else {
                 return Alert.alert(
                   "Помилка входу",

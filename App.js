@@ -24,13 +24,13 @@ export default function App() {
     "Roboto-700": require("./assets/fonts/Roboto-Bold.ttf"),
   });
 
-  const [initialRoute, setInitialRoute] = useState(null);
+  // const [initialRoute, setInitialRoute] = useState(null);
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setInitialRoute(user ? "Home" : "Login");
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     setInitialRoute(user ? "Home" : "Login");
+  //   });
+  // }, []);
 
   if (!fontsLoaded) {
     return null;
@@ -42,7 +42,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <NavigationContainer style={styles.container}>
-          <MainStack.Navigator initialRouteName={initialRoute}>
+          <MainStack.Navigator initialRouteName={"Login"}>
             <MainStack.Screen 
               name="Registration" 
               component={RegistrationScreen}
