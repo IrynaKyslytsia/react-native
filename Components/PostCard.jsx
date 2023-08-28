@@ -2,15 +2,11 @@ import React from "react";
 import { Image, Text, View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../redux/auth/selectors";
 
 export const PostCard = ({
-  data: { id, photo, title, place, coords, likes, comments, idUser },
+  data: { id, photo, title, place, coords },
 }) => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
 
   return (
     <View style={styles.container}>

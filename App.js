@@ -15,7 +15,6 @@ import {PostCard} from "./Components/PostCard";
 import {MapScreen} from "./Screens/MapScreen";
 import {CommentsScreen} from "./Screens/CommentsScreen";
 import { useEffect, useState } from 'react';
-// import { persistor, store } from "./redux/store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,14 +22,6 @@ export default function App() {
     "Roboto-500": require("./assets/fonts/Roboto-Medium.ttf"),
     "Roboto-700": require("./assets/fonts/Roboto-Bold.ttf"),
   });
-
-  // const [initialRoute, setInitialRoute] = useState(null);
-
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     setInitialRoute(user ? "Home" : "Login");
-  //   });
-  // }, []);
 
   if (!fontsLoaded) {
     return null;
